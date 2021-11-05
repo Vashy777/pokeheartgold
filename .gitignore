@@ -1,11 +1,13 @@
 # Object files
 *.nds
+*.DS_Store
 
 # Compilers
 tools/mwccarm/**
 
 # SDK
 tools/bin/**
+tools/.DS_Store
 
 # Build folder
 build/**
