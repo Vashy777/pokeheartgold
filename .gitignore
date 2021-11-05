@@ -68,3 +68,6 @@ cmake-build-*
 *.diff
 
 *.dSYM
+
+# MacOS garbage
+.DS_Store
