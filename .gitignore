@@ -71,3 +71,4 @@ cmake-build-*
 
 # MacOS garbage
 .DS_Store
+.DS_Store
