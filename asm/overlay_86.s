@@ -2507,7 +2507,7 @@ ov86_021E6DD8: ; 0x021E6DD8
 	mov r1, #0x89
 	lsl r1, r1, #2
 	ldr r0, [r0, r1]
-	bl sub_0202D918
+	bl Save_FrontierData_get
 	cmp r4, #6
 	bhi _021E6E1C
 	add r1, r4, r4
@@ -3293,7 +3293,7 @@ ov86_021E73EC: ; 0x021E73EC
 	sub sp, #0xc
 	add r5, r0, #0
 	add r4, r1, #0
-	bl sub_02091540
+	bl GetDexZknDataNarcID
 	mov r1, #1
 	str r1, [sp]
 	add r1, sp, #8

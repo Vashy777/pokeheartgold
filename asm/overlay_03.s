@@ -5628,8 +5628,8 @@ _02256B84:
 	.balign 4, 0
 	thumb_func_end ov03_02256B40
 
-	thumb_func_start ov03_02256B88
-ov03_02256B88: ; 0x02256B88
+	thumb_func_start ScrCmd_710
+ScrCmd_710: ; 0x02256B88
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	mov r4, #0
@@ -5646,7 +5646,7 @@ _02256B8E:
 	mov r0, #0
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
-	thumb_func_end ov03_02256B88
+	thumb_func_end ScrCmd_710
 
 	thumb_func_start ov03_02256BA8
 ov03_02256BA8: ; 0x02256BA8
@@ -6774,7 +6774,7 @@ _0225744C:
 	add r1, r5, #0
 	mov r2, #0xb
 	add r6, r0, #0
-	bl sub_02077D64
+	bl GetItemDescIntoString
 	b _022574AA
 _02257460:
 	cmp r1, #1
@@ -7466,7 +7466,7 @@ _022579AE:
 	add r1, #0x38
 	ldrh r1, [r2, r1]
 	mov r2, #0xb
-	bl sub_02078550
+	bl Bag_GetQuantity
 	pop {r4, pc}
 _022579C0:
 	cmp r4, #2
@@ -7476,7 +7476,7 @@ _022579C0:
 	sub r0, #0x37
 	ldrh r1, [r2, r1]
 	ldr r0, [r2, r0]
-	bl sub_0202CD94
+	bl SealCase_CountSealOccurrenceAnywhere
 	pop {r4, pc}
 _022579D4:
 	mov r0, #0
@@ -7902,7 +7902,7 @@ _02257D3A:
 	ldrh r1, [r4, r1]
 	ldrsh r2, [r4, r2]
 	ldr r0, [r4, r0]
-	bl sub_0202CD3C
+	bl SealCase_CheckSealQuantity
 _02257D4C:
 	cmp r0, #0
 	bne _02257D60
@@ -8126,7 +8126,7 @@ _02257EDE:
 	ldrh r1, [r4, r1]
 	ldrsh r2, [r4, r2]
 	ldr r0, [r4, r0]
-	bl sub_0202CCAC
+	bl GiveOrTakeSeal
 _02257EF0:
 	mov r1, #0xa3
 	lsl r1, r1, #2
@@ -9019,7 +9019,7 @@ _022585CA:
 	add r5, r0, #0
 	add r0, r6, #0
 	mov r1, #1
-	bl sub_02077C18
+	bl GetItemIndexMapping
 	add r3, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -9041,7 +9041,7 @@ _022585CA:
 	add r5, r0, #0
 	add r0, r6, #0
 	mov r1, #2
-	bl sub_02077C18
+	bl GetItemIndexMapping
 	add r3, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -9080,7 +9080,7 @@ ov03_02258648: ; 0x02258648
 	add r5, r0, #0
 	add r0, r6, #0
 	mov r1, #1
-	bl sub_02077C18
+	bl GetItemIndexMapping
 	add r3, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -9102,7 +9102,7 @@ ov03_02258648: ; 0x02258648
 	add r5, r0, #0
 	add r0, r6, #0
 	mov r1, #2
-	bl sub_02077C18
+	bl GetItemIndexMapping
 	add r3, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -9237,7 +9237,7 @@ ov03_02258764: ; 0x02258764
 	bl Sav2_Bag_get
 	ldr r1, _022587C8 ; =0x022597F0
 	mov r2, #0xb
-	bl sub_02078644
+	bl CreateBagView
 	str r0, [r4, #4]
 	mov r0, #0x43
 	lsl r0, r0, #2
@@ -9253,7 +9253,7 @@ ov03_02258764: ; 0x02258764
 	ldr r1, [r4, #4]
 	add r0, r5, #0
 	bl sub_0203E3D4
-	ldr r1, _022587CC ; =0x02092B05
+	ldr r1, _022587CC ; =sub_02092B04
 	add r0, r6, #0
 	add r2, r4, #0
 	bl sub_02050510
@@ -9265,7 +9265,7 @@ _022587C2:
 	pop {r3, r4, r5, r6, pc}
 	nop
 _022587C8: .word 0x022597F0
-_022587CC: .word 0x02092B05
+_022587CC: .word sub_02092B04
 _022587D0: .word 0x00000272
 	thumb_func_end ov03_02258764
 
@@ -9485,31 +9485,31 @@ _02258944: .word ov03_022588D4
 _02258948: .word ov03_02258894
 	thumb_func_end ov03_02258910
 
-	thumb_func_start ov03_0225894C
-ov03_0225894C: ; 0x0225894C
+	thumb_func_start ScrCmd_716
+ScrCmd_716: ; 0x0225894C
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	add r0, #0x80
 	ldr r0, [r0]
 	mov r1, #0x14
-	bl sub_020402F0
+	bl FieldSysGetAttrAddr
 	add r4, r0, #0
 	add r0, r5, #0
 	add r0, #0x80
 	ldr r0, [r0]
 	bl sub_0203EB08
 	str r0, [r4]
-	ldr r1, _02258974 ; =0x02042975
+	ldr r1, _02258974 ; =sub_02042974
 	add r0, r5, #0
 	bl SetupNativeScript
 	mov r0, #1
 	pop {r3, r4, r5, pc}
 	.balign 4, 0
-_02258974: .word 0x02042975
-	thumb_func_end ov03_0225894C
+_02258974: .word sub_02042974
+	thumb_func_end ScrCmd_716
 
-	thumb_func_start ov03_02258978
-ov03_02258978: ; 0x02258978
+	thumb_func_start ScrCmd_717
+ScrCmd_717: ; 0x02258978
 	push {r4, lr}
 	add r4, r0, #0
 	bl ScriptReadHalfword
@@ -9523,16 +9523,16 @@ ov03_02258978: ; 0x02258978
 	bl sub_02097720
 	mov r0, #1
 	pop {r4, pc}
-	thumb_func_end ov03_02258978
+	thumb_func_end ScrCmd_717
 
-	thumb_func_start ov03_02258998
-ov03_02258998: ; 0x02258998
+	thumb_func_start ScrCmd_718
+ScrCmd_718: ; 0x02258998
 	push {r4, r5, r6, lr}
 	add r5, r0, #0
 	add r0, #0x80
 	ldr r0, [r0]
 	mov r1, #0x10
-	bl sub_020402F0
+	bl FieldSysGetAttrAddr
 	ldr r1, [r5, #8]
 	add r6, r0, #0
 	add r0, r1, #1
@@ -9553,17 +9553,17 @@ ov03_02258998: ; 0x02258998
 	mov r0, #0
 	pop {r4, r5, r6, pc}
 	.balign 4, 0
-	thumb_func_end ov03_02258998
+	thumb_func_end ScrCmd_718
 
-	thumb_func_start ov03_022589D4
-ov03_022589D4: ; 0x022589D4
+	thumb_func_start ScrCmd_719
+ScrCmd_719: ; 0x022589D4
 	push {r4, r5, r6, lr}
 	add r5, r0, #0
 	add r0, #0x80
 	ldr r6, [r0]
 	mov r1, #0x10
 	add r0, r6, #0
-	bl sub_020402F0
+	bl FieldSysGetAttrAddr
 	add r0, r5, #0
 	bl ScriptReadHalfword
 	add r1, r0, #0
@@ -9585,10 +9585,10 @@ ov03_022589D4: ; 0x022589D4
 	mov r0, #0
 	pop {r4, r5, r6, pc}
 	.balign 4, 0
-	thumb_func_end ov03_022589D4
+	thumb_func_end ScrCmd_719
 
-	thumb_func_start ov03_02258A18
-ov03_02258A18: ; 0x02258A18
+	thumb_func_start ScrCmd_720
+ScrCmd_720: ; 0x02258A18
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #0x30
 	add r4, r0, #0
@@ -9596,7 +9596,7 @@ ov03_02258A18: ; 0x02258A18
 	ldr r5, [r0]
 	mov r1, #0x10
 	add r0, r5, #0
-	bl sub_020402F0
+	bl FieldSysGetAttrAddr
 	add r0, r4, #0
 	bl ScriptReadHalfword
 	add r4, #0x80
@@ -9800,10 +9800,10 @@ _02258BC6:
 	add sp, #0x30
 	pop {r3, r4, r5, r6, r7, pc}
 	.balign 4, 0
-	thumb_func_end ov03_02258A18
+	thumb_func_end ScrCmd_720
 
-	thumb_func_start ov03_02258BDC
-ov03_02258BDC: ; 0x02258BDC
+	thumb_func_start ScrCmd_721
+ScrCmd_721: ; 0x02258BDC
 	push {r3, r4, r5, lr}
 	add r4, r0, #0
 	bl ScriptReadHalfword
@@ -9819,10 +9819,10 @@ ov03_02258BDC: ; 0x02258BDC
 	strh r0, [r5]
 	mov r0, #0
 	pop {r3, r4, r5, pc}
-	thumb_func_end ov03_02258BDC
+	thumb_func_end ScrCmd_721
 
-	thumb_func_start ov03_02258C00
-ov03_02258C00: ; 0x02258C00
+	thumb_func_start ScrCmd_791
+ScrCmd_791: ; 0x02258C00
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #0x18
 	ldr r2, _02258CD4 ; =0x02259808
@@ -9922,10 +9922,10 @@ _02258CCA:
 	.balign 4, 0
 _02258CD4: .word 0x02259808
 _02258CD8: .word 0x00000165
-	thumb_func_end ov03_02258C00
+	thumb_func_end ScrCmd_791
 
-	thumb_func_start ov03_02258CDC
-ov03_02258CDC: ; 0x02258CDC
+	thumb_func_start ScrCmd_792
+ScrCmd_792: ; 0x02258CDC
 	push {r3, r4, r5, lr}
 	add r0, #0x80
 	ldr r5, [r0]
@@ -9939,7 +9939,7 @@ ov03_02258CDC: ; 0x02258CDC
 	bl sub_0202F784
 	mov r0, #0
 	pop {r3, r4, r5, pc}
-	thumb_func_end ov03_02258CDC
+	thumb_func_end ScrCmd_792
 
 	thumb_func_start ov03_02258CFC
 ov03_02258CFC: ; 0x02258CFC

@@ -38,6 +38,7 @@ KNARC        := $(TOOLSDIR)/knarc/knarc$(EXE)
 O2NARC       := $(TOOLSDIR)/o2narc/o2narc$(EXE)
 MSGENC       := $(TOOLSDIR)/msgenc/msgenc$(EXE)
 ASPATCH      := $(TOOLSDIR)/mwasmarm_patcher/mwasmarm_patcher$(EXE)
+ENCDATA_GS   := $(TOOLSDIR)/encdata-gs/encdata-gs$(EXE)
 
 NTRMERGE     := $(TOOLSDIR)/ntr_merge_elf/ntr_merge_elf.sh
 
@@ -49,7 +50,8 @@ NATIVE_TOOLS := \
 	$(KNARC) \
 	$(O2NARC) \
 	$(MSGENC) \
-	$(ASPATCH)
+	$(ASPATCH) \
+	$(ENCDATA_GS)
 
 TOOLDIRS := $(foreach tool,$(NATIVE_TOOLS),$(dir $(tool)))
 
@@ -92,7 +94,7 @@ LCF               := $(NEF:%.nef=%.lcf)
 SBIN              := $(NEF:%.nef=%.sbin)
 XMAP              := $(NEF).xMAP
 
-MWCFLAGS           = $(DEFINES) $(OPTFLAGS) -enum int -lang c99 -Cpp_exceptions off -gccext,on -proc $(PROC) -gccinc -i ./include -I$(WORK_DIR)/lib/include -ipa file -interworking
+MWCFLAGS           = $(DEFINES) $(OPTFLAGS) -enum int -lang c99 -Cpp_exceptions off -gccext,on -proc $(PROC) -gccinc -i ./include -i $(WORK_DIR)/files -I$(WORK_DIR)/lib/include -ipa file -interworking
 MWASFLAGS          = $(DEFINES) -proc $(PROC_S) -i ./include -DSDK_ASM
 MWLDFLAGS         := -nodead -w off -proc $(PROC) -nopic -nopid -interworking -map closure,unused -symtab sort -m _start -msgstyle gcc
 ARFLAGS           := rcS
@@ -152,7 +154,10 @@ else
 endif
 
 $(NEF): $(LCF) $(ALL_OBJS)
-	cd $(BUILD_DIR) && LM_LICENSE_FILE=$(BACK_REL)/$(LM_LICENSE_FILE) $(WINE) $(MWLD) $(MWLDFLAGS) $(LIBS) -o $(BACK_REL)/$(NEF) $(LCF:$(BUILD_DIR)/%=%) $(ALL_OBJS:$(BUILD_DIR)/%=%)
+	echo $(ALL_OBJS:$(BUILD_DIR)/%=%) >$(BUILD_DIR)/obj.list
+	cd $(BUILD_DIR) && LM_LICENSE_FILE=$(BACK_REL)/$(LM_LICENSE_FILE) $(WINE) $(MWLD) $(MWLDFLAGS) $(LIBS) -o $(BACK_REL)/$(NEF) $(LCF:$(BUILD_DIR)/%=%) @obj.list
+
+.INTERMEDIATE: $(BUILD_DIR)/obj.list
 
 $(SBIN): build/%.sbin: build/%.nef
 ifeq ($(COMPARE),1)

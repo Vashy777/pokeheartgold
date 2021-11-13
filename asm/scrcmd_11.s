@@ -54,8 +54,8 @@ sub_0204BD98: ; 0x0204BD98
 	pop {r3, pc}
 	thumb_func_end sub_0204BD98
 
-	thumb_func_start sub_0204BDA4
-sub_0204BDA4: ; 0x0204BDA4
+	thumb_func_start ScrCmd_489
+ScrCmd_489: ; 0x0204BDA4
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #0x20
 	add r4, r0, #0
@@ -199,7 +199,7 @@ _0204BEB6:
 	add r0, #0x80
 	ldr r0, [r0]
 	mov r1, #0x10
-	bl sub_020402F0
+	bl FieldSysGetAttrAddr
 	add r6, r0, #0
 	add r0, r4, #0
 	bl ScriptReadHalfword
@@ -246,7 +246,7 @@ _0204BF22:
 	add r0, #0x80
 	ldr r0, [r0]
 	mov r1, #0x10
-	bl sub_020402F0
+	bl FieldSysGetAttrAddr
 	add r6, r0, #0
 	add r0, r4, #0
 	bl ScriptReadHalfword
@@ -285,7 +285,7 @@ _0204BF8C:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _0204BF94: .word _020FC0E8
-	thumb_func_end sub_0204BDA4
+	thumb_func_end ScrCmd_489
 
 	thumb_func_start sub_0204BF98
 sub_0204BF98: ; 0x0204BF98
@@ -1026,7 +1026,7 @@ _0204C56A:
 	bl Sav2_SealCase_get
 	add r1, r4, #0
 	mov r2, #1
-	bl sub_0202CD3C
+	bl SealCase_CheckSealQuantity
 	pop {r3, r4, r5, pc}
 _0204C57A:
 	mov r0, #1
@@ -1059,20 +1059,20 @@ _0204C5A2:
 	bl Sav2_SealCase_get
 	add r1, r4, #0
 	mov r2, #1
-	bl sub_0202CCAC
+	bl GiveOrTakeSeal
 	pop {r3, r4, r5, pc}
 _0204C5B2:
 	ldr r0, [r5, #0xc]
-	bl sub_0202C028
-	bl sub_0202B9E0
+	bl Save_DressupData_get
+	bl SaveDressupData_GetFashionCase
 	add r1, r4, #0
 	mov r2, #1
 	bl sub_0202BB08
 	pop {r3, r4, r5, pc}
 _0204C5C6:
 	ldr r0, [r5, #0xc]
-	bl sub_0202C028
-	bl sub_0202B9E0
+	bl Save_DressupData_get
+	bl SaveDressupData_GetFashionCase
 	add r1, r4, #0
 	bl sub_0202BBD8
 	pop {r3, r4, r5, pc}

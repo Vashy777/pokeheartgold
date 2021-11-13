@@ -556,14 +556,14 @@ _0202B9DA:
 	.balign 4, 0
 	thumb_func_end sub_0202B9B8
 
-	thumb_func_start sub_0202B9E0
-sub_0202B9E0: ; 0x0202B9E0
+	thumb_func_start SaveDressupData_GetFashionCase
+SaveDressupData_GetFashionCase: ; 0x0202B9E0
 	ldr r1, _0202B9E8 ; =0x000007F4
 	add r0, r0, r1
 	bx lr
 	nop
 _0202B9E8: .word 0x000007F4
-	thumb_func_end sub_0202B9E0
+	thumb_func_end SaveDressupData_GetFashionCase
 
 	thumb_func_start sub_0202B9EC
 sub_0202B9EC: ; 0x0202B9EC
@@ -695,8 +695,8 @@ _0202BABE:
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_0202BAB0
 
-	thumb_func_start sub_0202BACC
-sub_0202BACC: ; 0x0202BACC
+	thumb_func_start FashionCase_CountAccessories
+FashionCase_CountAccessories: ; 0x0202BACC
 	push {r4, r5, r6, lr}
 	mov r5, #0
 	add r6, r0, #0
@@ -711,10 +711,10 @@ _0202BAD4:
 	blt _0202BAD4
 	add r0, r5, #0
 	pop {r4, r5, r6, pc}
-	thumb_func_end sub_0202BACC
+	thumb_func_end FashionCase_CountAccessories
 
-	thumb_func_start sub_0202BAE8
-sub_0202BAE8: ; 0x0202BAE8
+	thumb_func_start FashionCase_CountWallpapers
+FashionCase_CountWallpapers: ; 0x0202BAE8
 	push {r4, r5, r6, lr}
 	mov r5, #0
 	add r6, r0, #0
@@ -732,7 +732,7 @@ _0202BAFE:
 	blt _0202BAF0
 	add r0, r5, #0
 	pop {r4, r5, r6, pc}
-	thumb_func_end sub_0202BAE8
+	thumb_func_end FashionCase_CountWallpapers
 
 	thumb_func_start sub_0202BB08
 sub_0202BB08: ; 0x0202BB08
@@ -1346,11 +1346,11 @@ sub_0202BF10: ; 0x0202BF10
 	bne _0202BF6E
 	ldr r1, _0202BF7C ; =0xEDB88320
 	add r0, sp, #4
-	bl sub_020E3960
+	bl MATHi_CRC32InitTableRev
 	add r0, sp, #4
 	add r1, r4, #0
 	mov r2, #0x74
-	bl sub_020E3A58
+	bl MATH_CalcCRC32
 	add r6, r0, #0
 	mov r5, #0
 _0202BF40:
@@ -1360,11 +1360,11 @@ _0202BF40:
 	add r4, r0, #0
 	ldr r1, _0202BF7C ; =0xEDB88320
 	add r0, sp, #4
-	bl sub_020E3960
+	bl MATHi_CRC32InitTableRev
 	add r0, sp, #4
 	add r1, r4, #0
 	mov r2, #0x74
-	bl sub_020E3A58
+	bl MATH_CalcCRC32
 	cmp r0, r6
 	bne _0202BF66
 	mov r0, #0
@@ -1477,11 +1477,11 @@ _0202C022:
 	.balign 4, 0
 	thumb_func_end sub_0202BF80
 
-	thumb_func_start sub_0202C028
-sub_0202C028: ; 0x0202C028
+	thumb_func_start Save_DressupData_get
+Save_DressupData_get: ; 0x0202C028
 	ldr r3, _0202C030 ; =SavArray_get
 	mov r1, #0xc
 	bx r3
 	nop
 _0202C030: .word SavArray_get
-	thumb_func_end sub_0202C028
+	thumb_func_end Save_DressupData_get

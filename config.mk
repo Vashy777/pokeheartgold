@@ -4,11 +4,13 @@ GAME_LANGUAGE      ?= ENGLISH
 
 ifeq ($(GAME_VERSION),HEARTGOLD)
 buildname     := heartgold
+shortname     := gold
 TITLE_NAME    := POKEMON HG
 GAME_CODE     := IPK
 else
 ifeq ($(GAME_VERSION),SOULSILVER)
-buildname := soulsilver
+buildname     := soulsilver
+shortname     := silver
 TITLE_NAME    := POKEMON SS
 GAME_CODE     := IPG
 else
@@ -30,7 +32,7 @@ endif
 BUILD_DIR         := build/$(buildname)
 NEFNAME           := main
 
-GF_DEFINES  := -D$(GAME_VERSION) -DGAME_VERSION=$(GAME_VERSION) -DGAME_REMASTER=$(GAME_REMASTER) -D$(GAME_LANGUAGE) -DGAME_LANGUAGE=$(GAME_LANGUAGE)
+GF_DEFINES  := -D$(GAME_VERSION) -DGAME_REMASTER=$(GAME_REMASTER) -D$(GAME_LANGUAGE)
 GLB_DEFINES := -DSDK_ARM9 -DSDK_CODE_ARM
 DEFINES = $(GF_DEFINES) $(GLB_DEFINES)
 

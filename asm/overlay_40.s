@@ -49,7 +49,7 @@ ov40_0222B6E0: ; 0x0222B6E0
 	mov r0, #0x6d
 	bl sub_02007FD4
 	str r0, [r4, #0x64]
-	bl sub_020B7350
+	bl NNS_G2dSetupSoftwareSpriteCamera
 	ldr r0, [r4, #0x28]
 	mov r1, #1
 	bl sub_02003B50
@@ -325,7 +325,7 @@ ov40_0222B934: ; 0x0222B934
 	mov r0, #0x83
 	lsl r0, r0, #4
 	ldr r0, [r5, r0]
-	bl sub_0202A954
+	bl Sav2_Misc_get
 	add r1, r5, #0
 	add r1, #0x5c
 	ldrb r1, [r1]
@@ -1274,7 +1274,7 @@ _0222C1AE:
 	bne _0222C200
 	add r1, #0x18
 	ldr r0, [r5, r1]
-	bl sub_0202C028
+	bl Save_DressupData_get
 	add r1, r4, #0
 	bl sub_0202B9B8
 	bl sub_0202BC10
@@ -10008,7 +10008,7 @@ ov40_022306F0: ; 0x022306F0
 	mov r0, #0x83
 	lsl r0, r0, #4
 	ldr r0, [r5, r0]
-	bl sub_0202A954
+	bl Sav2_Misc_get
 	add r1, sp, #4
 	str r1, [sp]
 	ldr r1, _02230734 ; =0x0000086C
@@ -16872,10 +16872,10 @@ _02233D72:
 	mov r0, #0x83
 	lsl r0, r0, #4
 	ldr r0, [r4, r0]
-	bl sub_0202D918
+	bl Save_FrontierData_get
 	mov r1, #0
 	add r2, r1, #0
-	bl sub_0202D3F8
+	bl FrontierData_BattlePointAction
 	add r1, r5, #0
 	add r1, #0x90
 	str r0, [r1]
@@ -17573,7 +17573,7 @@ _0223434A:
 	mov r0, #0x83
 	lsl r0, r0, #4
 	ldr r0, [r5, r0]
-	bl sub_0202C028
+	bl Save_DressupData_get
 	mov r1, #0
 	bl sub_0202B9B8
 	mov r1, #0x8b
@@ -21571,7 +21571,7 @@ _022363D4:
 	add r2, r4, r2
 	ldrh r0, [r0, #0x2c]
 	ldrb r1, [r2, r1]
-	bl sub_02006218
+	bl PlayCry
 	pop {r3, r4, r5, pc}
 _0223649C:
 	add r0, r5, #0
@@ -25837,7 +25837,7 @@ _0223871A:
 	add r2, r5, r2
 	ldrh r0, [r0, #0x2c]
 	ldrb r1, [r2, r1]
-	bl sub_02006218
+	bl PlayCry
 _022387D0:
 	add r0, r4, #0
 	mov r1, #0xa
